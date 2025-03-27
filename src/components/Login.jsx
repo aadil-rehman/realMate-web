@@ -3,23 +3,23 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
+import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-	const [emailId, setEmailId] = useState("");
-	const [password, setPassword] = useState("");
+	const [emailId, setEmailId] = useState("aadil@gmail.com");
+	const [password, setPassword] = useState("Aadil@123");
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const handleLogin = async () => {
 		try {
 			const res = await axios.post(
-				"http://localhost:3000/login",
+				BASE_URL + "/login",
 				{
 					emailId,
 					password,
 				},
 				{ withCredentials: true }
 			);
-			console.log(res);
 			dispatch(addUser(res.data.data));
 			navigate("/");
 		} catch (err) {
