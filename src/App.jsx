@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import AppLayout from "./components/AppLayout";
 import Feed from "./components/Feed";
 import Profile from "./components/Profile";
+import Connections from "./components/Connections";
+import ConnectionRequests from "./components/ConnectionRequests";
 
 function App() {
 	return (
@@ -17,6 +19,8 @@ function App() {
 							<Route path="login" element={<Login />} />
 							<Route path="/profile" element={<Profile />} />
 							<Route path="/" element={<Feed />} />
+							<Route path="/connections" element={<Connections />} />
+							<Route path="/requests" element={<ConnectionRequests />} />
 						</Route>
 					</Routes>
 				</BrowserRouter>
