@@ -22,7 +22,7 @@ const NavBar = () => {
 	};
 
 	return (
-		<div className="flex navbar bg-base-300 shadow-sm justify-between">
+		<div className="flex navbar bg-base-300 shadow-sm justify-between fixed top-0 w-full z-50">
 			<div className="flex">
 				<SideDrawer />
 				<Link to="/" className="btn btn-ghost text-xl">
@@ -45,7 +45,7 @@ const NavBar = () => {
 							</div>
 							<ul
 								tabIndex={0}
-								className="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3 w-48 p-2 shadow"
+								className="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-48 p-2 shadow"
 							>
 								<li>
 									<Link to="/profile" className="justify-between">

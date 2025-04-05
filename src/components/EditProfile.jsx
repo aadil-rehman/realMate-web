@@ -26,6 +26,7 @@ const EditProfile = ({ user }) => {
 				about,
 				photoUrl,
 			};
+
 			const res = await axios.patch(BASE_URL + "/profile/edit", updatedData, {
 				withCredentials: true,
 			});
@@ -38,9 +39,10 @@ const EditProfile = ({ user }) => {
 			console.error(err);
 		}
 	};
+
 	return (
 		<>
-			<div className="flex justify-center my-10">
+			<div className="flex justify-center my-20">
 				<div className="card card-border bg-base-300 w-88 h-[75vh]">
 					<div className="card-body">
 						<div className="flex flex-col gap-2">
@@ -70,6 +72,9 @@ const EditProfile = ({ user }) => {
 								value={gender}
 								onChange={(e) => setGender(e.target.value)}
 							>
+								<option value="" disabled>
+									Select Gender
+								</option>
 								<option value="male">Male</option>
 								<option value="female">Female</option>
 								<option value="other">Other</option>
@@ -103,7 +108,7 @@ const EditProfile = ({ user }) => {
 				</div>
 			</div>
 			{showToast && (
-				<div className="toast toast-top toast-center">
+				<div className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50 shadow-xl">
 					<div className="alert alert-success">
 						<span>Profile updated successfully</span>
 					</div>
@@ -124,7 +129,6 @@ function FormRow({ fieldValue, setFieldValue, name, label }) {
 				type="text"
 				value={fieldValue}
 				onChange={(e) => setFieldValue(e.target.value)}
-				placeholder="Enter your name"
 				className="w-full p-2 text-xs border rounded-lg focus:ring focus:ring-blue-300 mt-1 bg-base-100 opacity-70 focus:opacity-95"
 			/>
 		</div>

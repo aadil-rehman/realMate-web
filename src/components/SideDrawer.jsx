@@ -13,18 +13,18 @@ const SideDrawer = () => {
 	return (
 		<div className="drawer">
 			<input id="my-drawer" type="checkbox" className="drawer-toggle" />
-			<label for="my-drawer" class="btn btn-ghost drawer-button">
+			<label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6"
+					className="h-6 w-6"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
 				>
 					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						strokeWidth="2"
 						d="M4 6h16M4 12h16m-7 6h7"
 					/>
 				</svg>
@@ -38,7 +38,7 @@ const SideDrawer = () => {
 				<ul className="menu bg-base-300 text-base-content min-h-full w-48 p-4">
 					<li>
 						<Link to="/" onClick={closeDrawer} className="text-gray-300">
-							<HomeIcon class="h-5 w-5 " />
+							<HomeIcon className="h-5 w-5 " />
 							Home
 						</Link>
 					</li>
@@ -48,7 +48,7 @@ const SideDrawer = () => {
 							onClick={closeDrawer}
 							className="text-gray-300"
 						>
-							<UserGroupIcon class="h-5 w-5" />
+							<UserGroupIcon className="h-5 w-5" />
 							Connections
 						</Link>
 					</li>
@@ -58,13 +58,13 @@ const SideDrawer = () => {
 							onClick={closeDrawer}
 							className="text-gray-300"
 						>
-							<UserPlusIcon class="h-5 w-5" />
+							<UserPlusIcon className="h-5 w-5" />
 							Requests
 						</Link>
 					</li>
 					<li>
 						<Link onClick={closeDrawer} className="text-gray-300">
-							<ChatBubbleBottomCenterTextIcon class="h-5 w-5" />
+							<ChatBubbleBottomCenterTextIcon className="h-5 w-5" />
 							Messages
 						</Link>
 					</li>
