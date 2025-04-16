@@ -24,8 +24,15 @@ const Feed = () => {
 	useEffect(() => {
 		getFeed();
 	}, []);
+
+	console.log(feed);
+
+	if (!feed || feed.length === 0)
+		return <p className="text-sm">No new user found!</p>;
+
 	return (
-		feed && (
+		feed &&
+		feed.length > 0 && (
 			<div className="flex justify-center">
 				<UserCard user={feed[0]} />
 			</div>

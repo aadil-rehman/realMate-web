@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import SideDrawer from "./SideDrawer";
+import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/outline";
 
 const NavBar = () => {
 	const user = useSelector((store) => store.user);
@@ -57,7 +58,10 @@ const NavBar = () => {
 									<Link className="justify-between">Setting</Link>
 								</li>
 								<li>
-									<a onClick={handleLogout}>Logout</a>
+									<Link onClick={handleLogout}>
+										Logout{" "}
+										<ArrowRightStartOnRectangleIcon className="h-5 w-5 text-gray-200" />
+									</Link>
 								</li>
 							</ul>
 						</div>
