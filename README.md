@@ -40,7 +40,7 @@
   server_name : 13.60.245.225
 
   location /api/ {
-  proxy_pass http://127.0.0.1:3000/api/;
+  proxy_pass http://127.0.0.1:3000/;
   proxy_http_version 1.1;
   proxy_set_header Upgrade $http_upgrade;
   proxy_set_header Connection keep-alive;
