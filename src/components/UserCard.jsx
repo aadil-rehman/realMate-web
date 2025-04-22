@@ -17,11 +17,14 @@ const UserCard = (props) => {
 		console.log(res);
 		dispatch(removeUserFromFeed(id));
 	}
-	console.log(props);
 	return (
-		<div className="card bg-base-300 w-96 shadow-sm h-[75vh] my-20">
+		<div
+			className={` ${
+				props.loggedInUserCard ? "w-96 h-[75vh] my-20" : ""
+			} card bg-base-300  shadow-sm  `}
+		>
 			<figure>
-				<img src={props?.user?.profileImage?.url} alt="profile Image" />
+				<img src={props?.user?.profileImage?.url} alt="profile Ia" />
 			</figure>
 			<div className="card-body">
 				<h2 className="card-title">{firstName + " " + lastName}</h2>

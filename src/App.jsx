@@ -20,7 +20,7 @@ function App() {
 						<Route path="/" element={<LandingPage />} />
 						<Route path="/app" element={<AppLayout />}>
 							<Route path="/app/profile" element={<Profile />} />
-							<Route path="/app/connect" element={<Feed />} />
+							<Route path="/app/feed" element={<Feed />} />
 							<Route path="/app/connections" element={<Connections />} />
 							<Route path="/app/requests" element={<ConnectionRequests />} />
 						</Route>

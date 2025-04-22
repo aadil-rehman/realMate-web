@@ -38,7 +38,7 @@ const SideDrawer = () => {
 				<ul className="menu bg-base-300 text-base-content min-h-full w-48 p-4">
 					<li>
 						<Link
-							to="/app/connect"
+							to="/app/feed"
 							onClick={closeDrawer}
 							className="text-gray-300"
 						>

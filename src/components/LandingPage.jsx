@@ -1,11 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { addUser } from "../utils/userSlice";
 
 const LandingPage = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const user = useSelector((store) => store.user);
+
+	const fetchUser = async () => {
+		if (user) return;
+		try {
+			const res = await axios.get(BASE_URL + "/profile/view", {
+				withCredentials: true,
+			});
+			dispatch(addUser(res?.data));
+		} catch (err) {
+			if (err.status === 401) {
+				navigate("/login");
+			}
+			console.error(err);
+		}
+	};
+
+	useEffect(() => {
+		fetchUser();
+	}, []);
 	return (
 		<>
 			<NavBar />

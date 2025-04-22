@@ -21,7 +21,8 @@ const Login = () => {
 				{ withCredentials: true }
 			);
 			dispatch(addUser(res.data.data));
-			navigate("/");
+			navigate("/app/feed");
+			window.location.reload();
 		} catch (err) {
 			console.error("ERROR: " + err);
 		}
