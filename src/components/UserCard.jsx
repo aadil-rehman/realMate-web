@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
 const UserCard = (props) => {
-	const { firstName, lastName, age, gender, about, photoUrl } = props.user;
+	const { firstName, lastName, age, gender, about } = props.user;
 	const dispatch = useDispatch();
 
 	async function handleSendRequest(status, id) {
@@ -17,10 +17,11 @@ const UserCard = (props) => {
 		console.log(res);
 		dispatch(removeUserFromFeed(id));
 	}
+	console.log(props);
 	return (
-		<div className="card bg-base-300 w-88 shadow-sm h-[75vh] my-20">
+		<div className="card bg-base-300 w-96 shadow-sm h-[75vh] my-20">
 			<figure>
-				<img src={photoUrl} alt="Shoes" />
+				<img src={props?.user?.profileImage?.url} alt="profile Image" />
 			</figure>
 			<div className="card-body">
 				<h2 className="card-title">{firstName + " " + lastName}</h2>

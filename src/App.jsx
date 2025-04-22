@@ -8,6 +8,8 @@ import Feed from "./components/Feed";
 import Profile from "./components/Profile";
 import Connections from "./components/Connections";
 import ConnectionRequests from "./components/ConnectionRequests";
+import LandingPage from "./components/LandingPage";
+import Signup from "./components/Signup";
 
 function App() {
 	return (
@@ -15,13 +17,15 @@ function App() {
 			<Provider store={store}>
 				<BrowserRouter basename="/">
 					<Routes>
-						<Route path="/" element={<AppLayout />}>
-							<Route path="login" element={<Login />} />
-							<Route path="/profile" element={<Profile />} />
-							<Route path="/" element={<Feed />} />
-							<Route path="/connections" element={<Connections />} />
-							<Route path="/requests" element={<ConnectionRequests />} />
+						<Route path="/" element={<LandingPage />} />
+						<Route path="/app" element={<AppLayout />}>
+							<Route path="/app/profile" element={<Profile />} />
+							<Route path="/app/connect" element={<Feed />} />
+							<Route path="/app/connections" element={<Connections />} />
+							<Route path="/app/requests" element={<ConnectionRequests />} />
 						</Route>
+						<Route path="/login" element={<Login />} />
+						<Route path="/signup" element={<Signup />} />
 					</Routes>
 				</BrowserRouter>
 			</Provider>

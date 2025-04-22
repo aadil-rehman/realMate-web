@@ -38,11 +38,15 @@ const Connections = () => {
 };
 
 const UserCard = ({ user }) => {
-	const { firstName, lastName, age, gender, about, photoUrl } = user;
+	const { firstName, lastName, age, gender, about, profileImage } = user;
 
 	return (
 		<div className="w-1/2 h-32 flex bg-base-300 rounded-lg gap-4">
-			<img alt="Photo" src={photoUrl} className="w-24 h-32 rounded-l-lg" />
+			<img
+				alt="Photo"
+				src={profileImage.url}
+				className="w-24 h-32 rounded-l-lg"
+			/>
 			<div className="flex flex-col flex-1 mr-3 mt-2">
 				<div className="flex justify-between w-full ">
 					<p className="text-xl">{firstName + " " + lastName}</p>

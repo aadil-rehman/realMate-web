@@ -64,11 +64,16 @@ const ConnectionRequests = () => {
 };
 
 const UserCard = ({ user, reviewRequest }) => {
-	const { firstName, lastName, age, gender, about, photoUrl } = user.fromUserId;
+	const { firstName, lastName, age, gender, about, profileImage } =
+		user.fromUserId;
 	return (
 		<div className="w-1/2 h-32 flex justify-between items-center bg-base-300 rounded-lg gap-4">
 			<div className="flex gap-3">
-				<img alt="Photo" src={photoUrl} className="w-24 h-32 rounded-l-lg" />
+				<img
+					alt="Photo"
+					src={profileImage.url}
+					className="w-24 h-32 rounded-l-lg"
+				/>
 				<div className="py-2 flex flex-col gap-1">
 					<p className="text-xl">{firstName + " " + lastName}</p>
 					{age && gender && (

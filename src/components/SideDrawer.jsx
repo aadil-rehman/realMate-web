@@ -37,14 +37,18 @@ const SideDrawer = () => {
 				></label>
 				<ul className="menu bg-base-300 text-base-content min-h-full w-48 p-4">
 					<li>
-						<Link to="/" onClick={closeDrawer} className="text-gray-300">
+						<Link
+							to="/app/connect"
+							onClick={closeDrawer}
+							className="text-gray-300"
+						>
 							<HomeIcon className="h-5 w-5 " />
 							Home
 						</Link>
 					</li>
 					<li>
 						<Link
-							to="/connections"
+							to="/app/connections"
 							onClick={closeDrawer}
 							className="text-gray-300"
 						>
@@ -54,7 +58,7 @@ const SideDrawer = () => {
 					</li>
 					<li>
 						<Link
-							to="/requests"
+							to="/app/requests"
 							onClick={closeDrawer}
 							className="text-gray-300"
 						>

@@ -50,3 +50,27 @@
   proxy_set_header X-Forwarded-Proto $scheme;
   proxy_cache_bypass $http_upgrade;
   }
+
+  # Adding a custom domain
+
+  - Purchased domain name from domain provider like godaddy, gynadot
+  - signup on cloudfare and add a new domain name
+  - change the nameserver on godaddy (or from where you purchased domain) and point it to cloudfare
+  - DNS record : A realMate.cdf 13.60.245.225
+  - Enable SSL for website domain in cloudfare
+
+  # Sending Emails via AWS SES
+
+  - Create a IAM user
+  - Give Access to AmazonSESFullAccess
+  - Amazon SES : Create an identity
+  - Verify your domain name
+  - Verify your email address
+  - Install AWS SDK -v3
+  - Code Example : https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/ses/src/ses_sendemail.js
+  - set up sesClient
+  - Access credential should be created in IAM under security credentials tab
+  - Add the credentials to .env file
+  - Write code for SES client
+  - Write code for sending email address
+  - Make email dynamic by passing more params to run functions

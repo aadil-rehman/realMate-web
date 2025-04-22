@@ -6,6 +6,7 @@ import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import SideDrawer from "./SideDrawer";
 import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { clearFeed } from "../utils/feedSlice";
 
 const NavBar = () => {
 	const user = useSelector((store) => store.user);
@@ -16,7 +17,8 @@ const NavBar = () => {
 		try {
 			await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
 			dispatch(removeUser());
-			navigate("/login");
+			dispatch(clearFeed());
+			navigate("/");
 		} catch (err) {
 			console.error(err);
 		}
@@ -25,13 +27,28 @@ const NavBar = () => {
 	return (
 		<div className="flex navbar bg-base-300 shadow-sm justify-between fixed top-0 w-full z-50">
 			<div className="flex">
-				<SideDrawer />
-				<Link to="/" className="btn btn-ghost text-xl">
+				{user && <SideDrawer />}
+				<Link to={user ? "/" : "/login"} className="btn btn-ghost text-xl">
 					🧑‍💻 RealMate
 				</Link>
 			</div>
 			<div className="flex gap-2">
-				{user && (
+				{!user ? (
+					<div>
+						<Link
+							to="/login"
+							className="btn text-sm btn-ghost hover:btn-primary"
+						>
+							Sing in{" "}
+						</Link>
+						<Link
+							to="/signup"
+							className="btn btn-ghost text-sm hover:btn-primary"
+						>
+							Sign up{" "}
+						</Link>
+					</div>
+				) : (
 					<>
 						<p className="flex items-center">Welcome, {user.firstName}</p>
 						<div className="dropdown dropdown-end mx-2">
@@ -41,7 +58,7 @@ const NavBar = () => {
 								className="btn btn-ghost btn-circle avatar"
 							>
 								<div className="w-10 rounded-full">
-									<img alt="user photo" src={user.photoUrl} />
+									<img alt="user photo" src={user.profileImage.url} />
 								</div>
 							</div>
 							<ul
@@ -49,7 +66,7 @@ const NavBar = () => {
 								className="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-48 p-2 shadow"
 							>
 								<li>
-									<Link to="/profile" className="justify-between">
+									<Link to="/app/profile" className="justify-between">
 										Profile
 										<span className="badge">New</span>
 									</Link>
