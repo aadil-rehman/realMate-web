@@ -16,6 +16,10 @@ import CreateBlog from "./components/CreateBlog";
 import EditBlog from "./components/EditBlog";
 import TermsOfService from "./components/TermsOfService";
 import Privacy from "./components/Privacy";
+import CancellationAndRefundPolicy from "./components/CancellationAndRefundPolicy";
+import ShippingAndDelivery from "./components/ShippingAndDelivery";
+import ContactUs from "./components/ContactUs";
+import HomePage from "./components/HomePage";
 
 function App() {
 	return (
@@ -23,7 +27,6 @@ function App() {
 			<Provider store={store}>
 				<BrowserRouter basename="/">
 					<Routes>
-						<Route path="/" element={<LandingPage />} />
 						<Route path="/app" element={<AppLayout />}>
 							<Route path="/app/profile" element={<Profile />} />
 							<Route path="/app/feed" element={<Feed />} />
@@ -34,10 +37,23 @@ function App() {
 							<Route path="/app/blog/create" element={<CreateBlog />} />
 							<Route path="/app/blog/edit/:blogId" element={<EditBlog />} />
 						</Route>
-						<Route path="/termsofservice" element={<TermsOfService />} />
-						<Route path="/privacy-policy" element={<Privacy />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/signup" element={<Signup />} />
+
+						<Route path="/" element={<HomePage />}>
+							<Route path="/" element={<LandingPage />} />
+							<Route path="/termsofservice" element={<TermsOfService />} />
+							<Route path="/privacy-policy" element={<Privacy />} />
+							<Route
+								path="/cancellation-refund"
+								element={<CancellationAndRefundPolicy />}
+							/>
+							<Route
+								path="/shipping-delivery"
+								element={<ShippingAndDelivery />}
+							/>
+							<Route path="/contact-us" element={<ContactUs />} />
+							<Route path="/login" element={<Login />} />
+							<Route path="/signup" element={<Signup />} />
+						</Route>
 					</Routes>
 				</BrowserRouter>
 			</Provider>
