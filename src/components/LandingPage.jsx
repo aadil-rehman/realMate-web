@@ -9,7 +9,6 @@ import { addUser } from "../utils/userSlice";
 
 const LandingPage = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const user = useSelector((store) => store.user);
 
 	const fetchUser = async () => {
@@ -20,9 +19,6 @@ const LandingPage = () => {
 			});
 			dispatch(addUser(res?.data));
 		} catch (err) {
-			if (err.status === 401) {
-				navigate("/login");
-			}
 			console.error(err);
 		}
 	};
@@ -51,14 +47,11 @@ function LandingPageContent({ user }) {
 					friendships in a safe and positive space.
 				</p>
 				<div className="flex justify-center gap-4">
-					<Link
-						to={user ? "/app/connect" : "/login"}
-						className="btn btn-primary"
-					>
+					<Link to={user ? "/app/feed" : "/login"} className="btn btn-primary">
 						Connect
 					</Link>
 					<Link
-						to={user ? "/blog/create" : "/login"}
+						to={user ? "/app/blog/create" : "/login"}
 						className="btn btn-outline"
 					>
 						Create Blog

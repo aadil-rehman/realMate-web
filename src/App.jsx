@@ -10,6 +10,12 @@ import Connections from "./components/Connections";
 import ConnectionRequests from "./components/ConnectionRequests";
 import LandingPage from "./components/LandingPage";
 import Signup from "./components/Signup";
+import Blog from "./components/Blog";
+import MyBlogs from "./components/MyBlogs";
+import CreateBlog from "./components/CreateBlog";
+import EditBlog from "./components/EditBlog";
+import TermsOfService from "./components/TermsOfService";
+import Privacy from "./components/Privacy";
 
 function App() {
 	return (
@@ -23,7 +29,13 @@ function App() {
 							<Route path="/app/feed" element={<Feed />} />
 							<Route path="/app/connections" element={<Connections />} />
 							<Route path="/app/requests" element={<ConnectionRequests />} />
+							<Route path="/app/blog/view/:blogId" element={<Blog />} />
+							<Route path="/app/myblogs" element={<MyBlogs />} />
+							<Route path="/app/blog/create" element={<CreateBlog />} />
+							<Route path="/app/blog/edit/:blogId" element={<EditBlog />} />
 						</Route>
+						<Route path="/termsofservice" element={<TermsOfService />} />
+						<Route path="/privacy-policy" element={<Privacy />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<Signup />} />
 					</Routes>

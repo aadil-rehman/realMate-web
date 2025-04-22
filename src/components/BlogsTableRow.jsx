@@ -18,11 +18,11 @@ const BlogsTableRow = ({ blog, myblog }) => {
 	const navigate = useNavigate();
 
 	const handleOpenBlog = () => {
-		navigate(`/blog/view/${blog._id}`);
+		navigate(`/app/blog/view/${blog._id}`);
 	};
 
 	const hadleEditBlog = () => {
-		navigate(`/blog/edit/${blog._id}`);
+		navigate(`/app/blog/edit/${blog._id}`);
 	};
 	return (
 		<li className="list-row gap-4 bg-base-200">
