@@ -18,14 +18,11 @@ export const createSocketConnection = () => {
 			},
 		});
 	} else {
-		return io(
-			"/",
-			{ path: "/api/socket.io" },
-			{
-				auth: {
-					token: getCookie("token"),
-				},
-			}
-		);
+		return io("/", {
+			path: "/api/socket.io",
+			auth: {
+				token: getCookie("token"),
+			},
+		});
 	}
 };
