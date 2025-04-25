@@ -11,15 +11,21 @@ function getCookie(name) {
 console.log(getCookie("token"));
 
 export const createSocketConnection = () => {
-	const socket = io(BASE_URL, {
-		auth: {
-			token: getCookie("token"),
-		},
-	});
-
-	socket.on("connect_error", (err) => {
-		console.log("Socket connection error:", err);
-	});
-
-	return socket;
+	if (location.hostname === "localhost") {
+		return io(BASE_URL, {
+			auth: {
+				token: getCookie("token"),
+			},
+		});
+	} else {
+		return io(
+			"/",
+			{ path: "/api/socket.io" },
+			{
+				auth: {
+					token: getCookie("token"),
+				},
+			}
+		);
+	}
 };
