@@ -14,7 +14,6 @@ const BlogsTableRow = ({ blog, myblog }) => {
 	const { blogTitle, blogDescription, blogImage, authorId, numberOfLikes } =
 		blog;
 
-	console.log(blog);
 	const navigate = useNavigate();
 
 	const handleOpenBlog = () => {

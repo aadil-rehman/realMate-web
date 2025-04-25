@@ -20,6 +20,9 @@ import CancellationAndRefundPolicy from "./components/CancellationAndRefundPolic
 import ShippingAndDelivery from "./components/ShippingAndDelivery";
 import ContactUs from "./components/ContactUs";
 import HomePage from "./components/HomePage";
+import Chat from "./components/Chat";
+import ChatBoxHome from "./components/ChatBoxHome";
+import ChatBox from "./components/ChatBox";
 
 function App() {
 	return (
@@ -36,6 +39,10 @@ function App() {
 							<Route path="/app/myblogs" element={<MyBlogs />} />
 							<Route path="/app/blog/create" element={<CreateBlog />} />
 							<Route path="/app/blog/edit/:blogId" element={<EditBlog />} />
+							<Route path="/app/chat" element={<Chat />}>
+								<Route path="/app/chat" element={<ChatBoxHome />} />
+								<Route path="/app/chat/:targetUserId" element={<ChatBox />} />
+							</Route>
 						</Route>
 
 						<Route path="/" element={<HomePage />}>

@@ -4,6 +4,7 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnection } from "../utils/connectionsSlice";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 const Connections = () => {
 	const dispatch = useDispatch();
@@ -39,6 +40,11 @@ const Connections = () => {
 
 const UserCard = ({ user }) => {
 	const { firstName, lastName, age, gender, about, profileImage } = user;
+	const navigate = useNavigate();
+
+	const handleChatButtonClick = (userId) => {
+		navigate(`/app/chat/${userId}`);
+	};
 
 	return (
 		<div className="w-1/2 h-32 flex bg-base-300 rounded-lg gap-4">
@@ -50,7 +56,10 @@ const UserCard = ({ user }) => {
 			<div className="flex flex-col flex-1 mr-3 mt-2">
 				<div className="flex justify-between w-full ">
 					<p className="text-xl">{firstName + " " + lastName}</p>
-					<span className="flex justify-center items-center gap-1 hover:text-secondary cursor-pointer">
+					<span
+						className="flex justify-center items-center gap-1 hover:text-secondary cursor-pointer"
+						onClick={() => handleChatButtonClick(user._id)}
+					>
 						<ChatBubbleBottomCenterTextIcon className="h-5 w-5" />
 						<p className="mb-1">chat</p>
 					</span>

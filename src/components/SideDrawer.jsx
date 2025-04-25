@@ -67,7 +67,11 @@ const SideDrawer = () => {
 						</Link>
 					</li>
 					<li>
-						<Link onClick={closeDrawer} className="text-gray-300">
+						<Link
+							to="/app/chat"
+							onClick={closeDrawer}
+							className="text-gray-300"
+						>
 							<ChatBubbleBottomCenterTextIcon className="h-5 w-5" />
 							Messages
 						</Link>
