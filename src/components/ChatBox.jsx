@@ -7,13 +7,15 @@ import { createSocketConnection } from "../utils/socket";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import Loader from "./Loader";
+import { formatTime } from "../utils/commonFunctions";
 
 const ChatBox = () => {
 	const [newMessage, setNewMessage] = useState("");
 	const [messages, setMessages] = useState([]);
 	const { targetUserId } = useParams();
 	const [isLoading, setIsLoading] = useState(false);
-
+	const [isTargetUserOnline, setIsTargetUserOnline] = useState(false);
+	const [messageCreatedAt, setMessageCreatedAt] = useState("");
 	const user = useSelector((store) => store.user);
 
 	const bottomRef = useRef();
@@ -21,6 +23,11 @@ const ChatBox = () => {
 	const userId = user?._id;
 	const firstName = user?.firstName;
 	const lastName = user?.lastName;
+
+	const targetUser = messages.find((msg) => msg?.firstName !== firstName);
+	const targetUserName = targetUser
+		? `${targetUser.firstName} ${targetUser.lastName}`
+		: "";
 
 	const fetchChats = async () => {
 		setIsLoading(true);
@@ -36,6 +43,7 @@ const ChatBox = () => {
 					lastName: senderId?.lastName,
 					profileImage: senderId?.profileImage,
 					text,
+					createdAt: formatTime(msg.createdAt),
 				};
 			});
 
@@ -60,14 +68,25 @@ const ChatBox = () => {
 
 		socket.on(
 			"messageReceived",
-			({ firstName, lastName, profileImage, text }) => {
+			({ firstName, lastName, profileImage, text, createdAt }) => {
 				console.log(firstName + " " + text);
 				setMessages((messages) => [
 					...messages,
-					{ firstName, lastName, profileImage, text },
+					{ firstName, lastName, profileImage, text, createdAt },
 				]);
 			}
 		);
+
+		socket.emit("checkonline", targetUserId);
+		socket.on("userOnlineStatus", (isOnline) => {
+			setIsTargetUserOnline(isOnline);
+		});
+		socket.on("userWentOffline", (userId) => {
+			console.log("User went offline:", userId);
+			if (userId === targetUserId) {
+				setIsTargetUserOnline(false);
+			}
+		});
 
 		socket.on("connect_error", (err) => {
 			console.error("Connection error:", err);
@@ -97,13 +116,19 @@ const ChatBox = () => {
 			userId,
 			targetUserId,
 			text: newMessage,
+			createdAt: formatTime(new Date()),
 		});
 		setNewMessage("");
 	};
 
 	return (
 		<div className="border-1 flex flex-col justify-between border-cyan-900 h-[60vh]">
-			<h1 className="px-4 py-2 border-b border-cyan-900">Chat </h1>
+			<div className="px-4 py-2 border-b border-cyan-900 flex gap-2  items-center">
+				<h1>Chat # {targetUserName} </h1>
+				{isTargetUserOnline && (
+					<span class="text-sm text-cyan-400 opacity-75"> (online) </span>
+				)}
+			</div>
 			<div className="flex-1 overflow-y-auto">
 				{isLoading ? (
 					<Loader />
@@ -122,7 +147,7 @@ const ChatBox = () => {
 								</div>
 								<div className="chat-header">
 									{msg?.firstName + " " + msg?.lastName}
-									<time className="text-xs opacity-50">12:45</time>
+									<time className="text-xs opacity-50">{msg?.createdAt}</time>
 								</div>
 								<div className="chat-bubble text-sm">{msg.text}</div>
 							</div>

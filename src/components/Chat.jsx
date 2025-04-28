@@ -51,8 +51,8 @@ const SideBar = () => {
 				</p>
 				{connections.map((user) => (
 					<div
-						className={`flex gap-2 rounded-lg hover:bg-base-200 px-2 py-1.5 ${
-							targetUserId === user._id ? "bg-base-200" : ""
+						className={`flex gap-2 rounded-lg hover:bg-base-300 px-2 py-1.5 ${
+							targetUserId === user._id ? "bg-base-300" : ""
 						} `}
 						onClick={() => handleUserClick(user._id)}
 						key={user._id}
