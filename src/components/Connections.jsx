@@ -18,7 +18,6 @@ const Connections = () => {
 		dispatch(addConnection(res?.data?.data));
 	};
 
-	console.log(connections);
 	useEffect(() => {
 		getConnections();
 	}, []);

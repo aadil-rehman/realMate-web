@@ -18,7 +18,6 @@ const FeedBlogs = () => {
 			const res = await axios.get(BASE_URL + "/blog/feed", {
 				withCredentials: true,
 			});
-			console.log(res);
 			dispatch(addBlogFeed(res?.data?.data));
 		} catch (err) {
 			console.error(err);
@@ -29,7 +28,6 @@ const FeedBlogs = () => {
 		getFeed();
 	}, []);
 
-	console.log(blogFeed);
 	if (!blogFeed) return <Loader />;
 	return (
 		<div className="mx-auto overflow-y-auto h-full scrollbar-hidden">

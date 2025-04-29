@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
 	ChatBubbleOvalLeftIcon,
 	HeartIcon,
@@ -149,13 +149,16 @@ const Blog = () => {
 						</div>
 						<div className="row-span-1 flex flex-col gap-1">
 							<div className="flex justify-between items-center mr-2">
-								<h1 className="text-xs">
+								<Link
+									to={`/app/user-profile/${blog?.authorId?._id}`}
+									className="text-xs hover:underline hover:text-blue-400"
+								>
 									{blog &&
 										"Author : " +
 											blog.authorId.firstName +
 											" " +
 											blog.authorId.lastName}
-								</h1>
+								</Link>
 								<div className="flex gap-4 items-center text-sm">
 									<span className="flex gap-1 items-center">
 										<div className="text-xs">
@@ -229,12 +232,15 @@ const Blog = () => {
 													</div>
 												</div>
 												<div className="flex flex-col">
-													<div className="text-[10px] font-semibold text-cyan-500 mb-0.5">
+													<Link
+														to={`/app/user-profile/${comment?.fromUserId?._id}`}
+														className="text-[10px] font-semibold text-cyan-500 mb-0.5 hover:underline"
+													>
 														{"@" +
 															comment?.fromUserId?.firstName +
 															"" +
 															comment?.fromUserId?.lastName}
-													</div>
+													</Link>
 													<div className="chat-bubble text-xs py-1 w-full">
 														{comment.message}
 													</div>

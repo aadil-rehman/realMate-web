@@ -23,6 +23,7 @@ import HomePage from "./components/HomePage";
 import Chat from "./components/Chat";
 import ChatBoxHome from "./components/ChatBoxHome";
 import ChatBox from "./components/ChatBox";
+import UserProfile from "./components/UserProfile";
 
 function App() {
 	return (
@@ -43,6 +44,10 @@ function App() {
 								<Route path="/app/chat" element={<ChatBoxHome />} />
 								<Route path="/app/chat/:targetUserId" element={<ChatBox />} />
 							</Route>
+							<Route
+								path="/app/user-profile/:userId"
+								element={<UserProfile />}
+							/>
 						</Route>
 
 						<Route path="/" element={<HomePage />}>

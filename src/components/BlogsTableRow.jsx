@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { shortenString } from "../utils/commonFunctions";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BlogsTableRow = ({ blog, myblog }) => {
 	const { blogTitle, blogDescription, blogImage, authorId, numberOfLikes } =
@@ -31,10 +31,13 @@ const BlogsTableRow = ({ blog, myblog }) => {
 			<div className="flex justify-between">
 				<div>
 					<div className="flex gap-3 items-center">
-						<h1 className="border-cyan-800 border-1 px-1 py-0.5 text-xs rounded-lg flex gap-1 items-center">
+						<Link
+							to={`/app/user-profile/${authorId?._id}`}
+							className="border-cyan-800 border-1 px-1 py-0.5 text-xs rounded-lg flex gap-1 items-center"
+						>
 							<UserCircleIcon className="w-4 h-4" />{" "}
 							{authorId && authorId.firstName + " " + authorId.lastName}
-						</h1>
+						</Link>
 						<h1 className="text-xs font-bold">{blogTitle}</h1>
 					</div>
 					<p className="list-col-wrap text-xs opacity-80 mt-1">
